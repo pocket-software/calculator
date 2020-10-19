@@ -12,8 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Install Dependencies
+      - name: Cache Depencencies
         uses: EgorDm/gha-yarn-node-cache@v1
+      
+      - name: Install Dependencies
+        run: yarn install --dev
 
       - name: Test ESLint
         run: yarn lint
