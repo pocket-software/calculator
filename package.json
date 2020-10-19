@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "@react-native-community/clipboard": "^1.5.0",
@@ -26,6 +27,7 @@
     "eslint": "^7.11.0",
     "jest": "^26.5.3",
     "metro-react-native-babel-preset": "^0.63.0",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
