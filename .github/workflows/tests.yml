@@ -1,0 +1,19 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install Dependencies
+        uses: EgorDm/gha-yarn-node-cache@v1
+
+      - name: Test ESLint
+        run: yarn lint
