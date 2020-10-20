@@ -4,6 +4,7 @@ import {Modalize} from 'react-native-modalize';
 import useTheme from '../utils/useTheme';
 import Icon from 'react-native-vector-icons/Feather';
 import Divider from './divider';
+import {version} from '../../package.json';
 
 const options = [
   {
@@ -95,6 +96,9 @@ const SettingsModal = (props, ref) => {
             <Text style={{...styles.copyright, color: theme.text}}>
               {'Made with  ❤  by Pocket Software'}
             </Text>
+            <Text style={{...styles.version, color: theme.text}}>
+              v{version}
+            </Text>
           </TouchableOpacity>
         ),
         ItemSeparatorComponent: Divider,
@@ -143,6 +147,10 @@ const styles = StyleSheet.create({
   copyright: {
     textAlign: 'center',
     fontSize: 16,
+    marginBottom: 5,
+  },
+  version: {
+    textAlign: 'center',
     marginBottom: 15,
   },
 });
