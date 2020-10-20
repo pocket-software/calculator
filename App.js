@@ -4,7 +4,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -22,7 +22,9 @@ import {
 import RNBootSplash from 'react-native-bootsplash';
 import Clipboard from '@react-native-community/clipboard';
 import CalculatorIcon from './src/components/calculatorIcon';
+import SettingsModal from './src/components/settingsModal';
 import useTheme from './src/utils/useTheme';
+import Icon from 'react-native-vector-icons/Feather';
 
 const fontSize = 30;
 
@@ -89,6 +91,7 @@ const buttons = [
 const App = () => {
   const theme = useTheme();
   const [operations, setOperations] = useState([]);
+  const settingsModalRef = useRef();
 
   useEffect(() => RNBootSplash.hide({duration: 300}), []);
 
@@ -204,6 +207,13 @@ const App = () => {
       />
       <SafeAreaView style={styles.root}>
         <View style={{...styles.root, backgroundColor: theme.background}}>
+          <View style={styles.navbarContainer}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => settingsModalRef.current?.open()}>
+              <Icon name={'settings'} color={theme.text} size={fontSize} />
+            </TouchableOpacity>
+          </View>
           <View style={styles.displayContainer}>
             <Text
               onPress={handleCopyToClipboard}
@@ -255,6 +265,7 @@ const App = () => {
             </View>
           ))}
         </View>
+        <SettingsModal ref={settingsModalRef} />
       </SafeAreaView>
     </>
   );
@@ -262,6 +273,10 @@ const App = () => {
 
 const styles = StyleSheet.create({
   root: {flex: 1, width: '100%'},
+  navbarContainer: {
+    padding: 15,
+    alignItems: 'flex-end',
+  },
   displayContainer: {
     flex: 1,
     justifyContent: 'center',
