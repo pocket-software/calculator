@@ -2,6 +2,7 @@
  * @format
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
 import {AppRegistry} from 'react-native';
 import {AppearanceProvider} from 'react-native-appearance';
