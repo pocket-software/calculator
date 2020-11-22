@@ -93,7 +93,9 @@ const App = () => {
   const [operations, setOperations] = useState([]);
   const settingsModalRef = useRef();
 
-  useEffect(() => RNBootSplash.hide({duration: 300}), []);
+  useEffect(() => {
+    RNBootSplash.hide({duration: 300});
+  }, []);
 
   /**
    * Solves the current operation array and sets the new operation array to the result
@@ -201,6 +203,7 @@ const App = () => {
 
   return (
     <>
+      <SafeAreaView style={[styles.safeAreaView, {backgroundColor: theme.background}]} />
       <StatusBar
         backgroundColor={theme.background}
         barStyle={`${useColorScheme() === 'dark' ? 'light' : 'dark'}-content`}
@@ -265,8 +268,9 @@ const App = () => {
             </View>
           ))}
         </View>
-        <SettingsModal ref={settingsModalRef} />
       </SafeAreaView>
+      <SafeAreaView forceInset={'top'} pointerEvents={'none'} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 2}}><SettingsModal ref={settingsModalRef} /></SafeAreaView>
+      <SafeAreaView style={[styles.safeAreaView, {backgroundColor: theme.background}]}/>
     </>
   );
 };
@@ -302,6 +306,9 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   buttonText: {fontSize: fontSize + 5},
+  safeAreaView: {
+    flex: 0
+  }
 });
 
 export default App;
