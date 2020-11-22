@@ -6283,11 +6283,6 @@ react-native-bootsplash@^3.0.1:
     fs-extra "^9.0.1"
     jimp "^0.16.1"
 
-react-native-change-icon@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-change-icon/-/react-native-change-icon-3.0.0.tgz#750e95b137f496ea94b5328829e8dcf8454b0a61"
-  integrity sha512-7p/ng9j7+T6uqD3cvsD8bPqxOhgDnNlNRTkNhMhQT+WLGyTq2k1PcjOGuYMK4ceiofz0IsGRWlyTgvIgzReCLQ==
-
 react-native-gesture-handler@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.8.0.tgz#18f61f51da50320f938957b0ee79bc58f47449dc"

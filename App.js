@@ -203,13 +203,21 @@ const App = () => {
 
   return (
     <>
-      <SafeAreaView style={[styles.safeAreaView, {backgroundColor: theme.background}]} />
+      <SafeAreaView
+        style={[styles.safeAreaView, {backgroundColor: theme.background}]}
+      />
       <StatusBar
-        backgroundColor={theme.background}
+        backgroundColor={'transparent'}
         barStyle={`${useColorScheme() === 'dark' ? 'light' : 'dark'}-content`}
+        translucent
       />
       <SafeAreaView style={styles.root}>
-        <View style={{...styles.root, backgroundColor: theme.background}}>
+        <View
+          style={{
+            ...styles.root,
+            ...styles.content,
+            backgroundColor: theme.background,
+          }}>
           <View style={styles.navbarContainer}>
             <TouchableOpacity
               activeOpacity={0.7}
@@ -269,14 +277,25 @@ const App = () => {
           ))}
         </View>
       </SafeAreaView>
-      <SafeAreaView forceInset={'top'} pointerEvents={'none'} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 2}}><SettingsModal ref={settingsModalRef} /></SafeAreaView>
-      <SafeAreaView style={[styles.safeAreaView, {backgroundColor: theme.background}]}/>
+      <SafeAreaView
+        forceInset={'top'}
+        pointerEvents={'box-none'}
+        style={styles.modalContainer}>
+        <SettingsModal ref={settingsModalRef} />
+      </SafeAreaView>
+      {Platform.OS === 'io'}
+      <SafeAreaView
+        style={[styles.safeAreaView, {backgroundColor: theme.background}]}
+      />
     </>
   );
 };
 
 const styles = StyleSheet.create({
   root: {flex: 1, width: '100%'},
+  content: {
+    paddingTop: StatusBar.currentHeight,
+  },
   navbarContainer: {
     padding: 15,
     alignItems: 'flex-end',
@@ -307,8 +326,16 @@ const styles = StyleSheet.create({
   },
   buttonText: {fontSize: fontSize + 5},
   safeAreaView: {
-    flex: 0
-  }
+    flex: 0,
+  },
+  modalContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 2,
+  },
 });
 
 export default App;
